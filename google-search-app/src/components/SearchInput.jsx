@@ -7,7 +7,14 @@ import MicIcon from "../assets/mic.svg";
 import ImageIcon from "../assets/image.svg";
 
 const SearchInput = () => {
-  const [searchQuery, setsearchQuery] = useState("");
+    const { query } = useParams();
+    const [searchQuery, setsearchQuery] = useState(query || "");
+    const navigate = useNavigate()
+    const searchQueryHandler = (event) => {
+        if (event.key ==="Enter"&& searchQuery.length > 0) {
+            navigate(`/${searchQuery}/${1}`)
+        }
+    }
   return (
     <div
       id="searchBox"
@@ -20,8 +27,8 @@ const SearchInput = () => {
         type="text"
         autoFocus
         className="grow outline-0 text-black/[0.87]"
-        onChange={(e) => console.log(e.target.value)}
-        onKeyUp={(e) => console.log(e.target.value)}
+        onChange={(e) => setsearchQuery(e.target.value)}
+        onKeyUp={searchQueryHandler}
         value={searchQuery}
       />
       <div className="flex items-center gap-3">
@@ -30,7 +37,7 @@ const SearchInput = () => {
             size={24}
             className="cursor-pointer"
             color="#70757a"
-            onChange={(e) => searchQuery("")}
+            onClick={(e) =>setsearchQuery("")}
           />
         )}
         <img className="h-6 w-6 cursor-pointer" src={MicIcon} />

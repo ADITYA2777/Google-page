@@ -4,7 +4,7 @@ import SearchInput from "./SearchInput";
 import Footer from "./Footer";
 const Home = () => {
     return (
-      <div className="flex height-[100vh] flex-col">
+      <div className="flex h-[100vh] flex-col">
         <HomeHeader />
         <main className="grow flex justify-center">
           <div className="w-full px-5 flex flex-col items-center mt-44">
