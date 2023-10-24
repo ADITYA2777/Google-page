@@ -6,12 +6,19 @@ import SearchInput from "./SearchInput";
 import ProfileIcon from "./ProfileIcon";
 import { Context } from "../utils/ContextApi";
 import { menu } from "../utils/Constants";
-import SearchResult from "./SearchResult";
 
 const SearchResultHeader = () => {
-    const [selectedMenu ,setselectedMenu] = useState("All")
-    const clickHander = (menuItems) => {
-      setselectedMenu(menuItems.name)
+  const [selectedMenu, setselectedMenu] = useState("All");
+  const {setImageSearch }= useContext(Context);
+
+  useEffect(() => {
+    return () => setImageSearch(false);
+  }, []);
+  
+  const clickHander = (menuItems) => {
+    let isTypeImage = menuItems.name === "Images";
+    setselectedMenu(menuItems.name);
+    setImageSearch(isTypeImage ? true : false);
   };
   return (
     <div
