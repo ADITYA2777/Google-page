@@ -20,49 +20,55 @@ const Pagination = ({ queries }) => {
   };
   return (
     <div className="flex flex-col items-center py-14 max-w-[700px]">
-      <div className=" relative text-[#4285f4]">
-        {queries.previousPage && (
+      <div className="relative text-[#4285f4]">
+        {queries?.previousPage && (
           <div
             className="absolute left-[-30px] md:left-[-40px] top-[10px]"
             onClick={() =>
-              paginationClickHandler(queries.previousPage[0].starIndex)
+              paginationClickHandler(queries?.previousPage[0]?.starIndex)
             }
           >
-            <FiChevronLeft size={20} className="cursor-wait" />
-            <div className="cursor-pointer absolute left-[-5px] top-[30px]  hidden md:block">
-              prev
+            <FiChevronLeft size={20} className="cursor-pointer" />
+            <div
+              className="cursor-pointer absolute left-[-5px] top-[30px]
+             hidden md:block"
+            >
+              Prev
             </div>
           </div>
         )}
         <img className="w-[250px] md:w-[300px]" src={Logo} />
-        {queries.previousPage && (
+        {queries?.nextPage && (
           <div
             className="absolute right-[-30px] md:right-[-40px] top-[10px]"
             onClick={() =>
-              paginationClickHandler(queries.nextPage[0].starIndex)
+              paginationClickHandler(queries?.nextPage[0]?.starIndex)
             }
           >
-            <FiChevronRight size={20} className="cursor-wait" />
-            <div className="cursor-pointer absolute left-[-5px] top-[30px]  hidden md:block">
-              next
+            <FiChevronRight size={20} className="cursor-pointer" />
+            <div
+              className="cursor-pointer absolute left-[-5px] top-[30px] 
+             hidden md:block"
+            >
+              {" "}
+              Next
             </div>
           </div>
         )}
-          </div>
-          <div className="flex gap-3 text-[#4285f4] text-sm">
-              {pagination.map((p) => {
-                  <span
-                    key={p.page}
-                    onClick={() => paginationClickHandler(p.startIndex)}
-                      className={`cursor-pointer ${
-                        page === p.startIndex ? "text-black":""
-                    }`
-                }
-                  >
-                      {p.page}
-                  </span>;
-              })}
-          </div>
+      </div>
+      <div className="flex gap-3 text-[#4285f4] text-sm">
+        {pagination.map((p) => (
+          <span
+            key={p.page}
+            onClick={() => paginationClickHandler(p?.startIndex)}
+            className={`cursor-pointer ${
+              page === p.startIndex ? "text-black" : ""
+            }`}
+          >
+            {p.page}
+          </span>
+        ))}
+      </div>
     </div>
   );
 };
